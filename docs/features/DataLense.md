@@ -159,4 +159,4 @@ If `python3` is not in your `PATH`, set this to the full path of your Python exe
 
 ## Generating Data from the Panel
 
-At the bottom of the Parse + Baseline panel there is a row count input and a **Generate** button. Clicking it passes the baseline result to `generator.py` and opens the Checkpoint Monitor panel. See [`synthetic-data.md`](synthetic-data.md) for the full generation pipeline and [`checkpoint-monitor.md`](checkpoint-monitor.md) for the monitor panel.
+At the bottom of the Parse + Baseline panel there is a row count input and a **Generate** button. Clicking it passes the baseline result to `generator.py` and opens the Checkpoint Monitor panel. See [`synthetic-data.md`](SynthDataGen.md) for the full generation pipeline and [`checkpoint-monitor.md`](CheckPoint.md) for the monitor panel.
