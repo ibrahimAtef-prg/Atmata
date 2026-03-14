@@ -1,0 +1,69 @@
+{
+  "name": "automate",
+  "displayName": "DataGenerator Agent",
+  "description": "a tool that generates new datasets based on existing baseline data for machine learning and AI workflows with the keep of privacy and validation of data inside VS code.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.108.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:python"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "idelense.parseDataset",
+        "title": "IDE Lense: Analyse Dataset"
+      },
+      {
+        "command": "idelense.generateSynthetic",
+        "title": "IDE Lense: Generate Synthetic Data"
+      },
+      {
+        "command": "idelense.openCheckpoint",
+        "title": "IDE Lense: Open Checkpoint Monitor"
+      }
+      
+    ]
+  },
+
+  "configuration": {
+    "title": "DataGenerator Agent",
+    "properties": {
+      "idelense.pythonPath": {
+        "type": "string",
+        "default": "python3",
+        "description": "Path to the Python executable used to run parse/baseline/generator scripts."
+      }
+    }
+  }
+,
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.109.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "typescript-eslint": "^8.54.0",
+    "eslint": "^9.39.2",
+    "typescript": "^5.9.3",
+    "ts-loader": "^9.5.4",
+    "webpack": "^5.104.1",
+    "webpack-cli": "^6.0.1",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
