@@ -275,7 +275,7 @@ automate/
 | 14 | Malak Ihab Abdelhamid Abdelrahman | 2430665 |
 | 15 | Mohamed Abdel-Nabi Mohamed Hammad | 2430615 |
 
-**Supervisor:** *(To be filled)*
+**Supervisor:** *(Mohammed Ammar)*
 **University:** Helwan International Technological University (HITU)
 **Department:** Artificial Intelligence
 **Year:** 2nd Year Final Project
