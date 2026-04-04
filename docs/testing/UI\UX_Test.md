@@ -7,8 +7,8 @@
 ## 📹 Demo Recording
 
 <video width="100%" controls>
-  <source src="../assets/Aurora.mkv" type="video/x-matroska">
-  Your browser does not support the video tag. <a href="../assets/Aurora.mkv">Download the recording</a>.
+  <source src="../testing/assets/Aurora.mkv" type="video/x-matroska">
+  Your browser does not support the video tag. <a href="../testing/assets/Aurora.mkv">Download the recording</a>.
 </video>
 
 ---
@@ -106,7 +106,7 @@
 
 | File | Path |
 |------|------|
-| Test Recording | [`UIAurora.mkv`](../assets/Aurora.mkv) |
+| Test Recording | [`UIAurora.mkv`](../testing/assets/Aurora.mkv) |
 
 ---
 
