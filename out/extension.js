@@ -615,23 +615,36 @@ function runGenerator(context, filePath, baselinePath, n) {
         ]);
         const timeout = setTimeout(() => {
             proc.kill();
+            reject(new Error('generator.py timed out after 120s'));
         }, 120000);
         const { stdout, stderr, code } = await collectOutput(proc);
         clearTimeout(timeout);
+        if (code === 2) {
+            // Exit code 2 = PipelineHardFail — structured enforcement error
+            let enforcementErr = { error_type: 'PipelineHardFail', message: stderr };
+            try {
+                enforcementErr = JSON.parse(stderr.trim());
+            }
+            catch { /* use raw */ }
+            reject(new Error(`[${enforcementErr.error_type || 'EnforcementFail'}] ` +
+                `Stage: ${enforcementErr.stage || 'unknown'} — ` +
+                `${enforcementErr.message || stderr}`));
+            return;
+        }
         if (code !== 0) {
-            reject(stderr || `generator.py exited ${code}`);
+            reject(new Error(stderr || `generator.py exited ${code}`));
             return;
         }
         const trimmed = stdout.trim();
         if (!trimmed) {
-            reject('Empty output from generator.py');
+            reject(new Error('Empty output from generator.py'));
             return;
         }
         try {
             resolve(JSON.parse(trimmed));
         }
         catch {
-            reject("Invalid JSON from generator.py");
+            reject(new Error("Invalid JSON from generator.py"));
         }
     });
 }

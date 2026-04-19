@@ -375,9 +375,9 @@ def build_baseline(
 def _load_dataframe(kind: str, source: str, *, max_rows: Optional[int]) -> Tuple[any, List[str]]:
     warnings: List[str] = []
     if kind == "csv":
-        df = pd.read_csv(source)
-        if max_rows is not None:
-            df = df.head(max_rows)
+        # Pass max_rows directly into read_csv so pandas never allocates the full
+        # file in memory — critical for large datasets (100k+ rows).
+        df = pd.read_csv(source, nrows=max_rows)  # nrows=None → load all (unchanged)
         return df, warnings
 
     if kind == "excel":

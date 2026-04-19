@@ -305,7 +305,12 @@ def _infer_dtype(values: List[Any]) -> str:
             continue
         if isinstance(v, str):
             s = v.strip()
-            if re.search(r"\d{4}-\d{2}-\d{2}", s) or re.search(r"\d{2}/\d{2}/\d{4}", s):
+            if (
+                re.search(r"\d{4}-\d{2}-\d{2}", s)          # ISO:   2020-05-15 …
+                or re.search(r"\d{2}/\d{2}/\d{4}", s)        # US:    05/15/2020 …
+                or re.search(r"\d{2}-\d{2}-\d{4}", s)        # EU:    15-05-2020 …
+                or re.search(r"\d{2}-\d{2}-\d{4}\s+\d{2}:\d{2}", s)  # EU+time: 15-05-2020 00:00
+            ):
                 dt_hits += 1
     if dt_hits >= max(1, len(non_null[:50]) // 2):
         return "datetime"
